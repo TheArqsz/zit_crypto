@@ -86,7 +86,6 @@ class SevenZip:
                     pass
                 for line in listPass:
                     line = ''.join(line)
-                    logging.error(line)
                     found = self.extractFile(zf, line)
                     if found == True:
                         self.clear_file(self.file_path)
