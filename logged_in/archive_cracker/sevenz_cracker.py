@@ -84,7 +84,7 @@ class SevenZip:
                     pass
                 for line in listPass:
                     line = ''.join(line)
-                    # print(line)
+                    print(line)
                     found = self.extractFile(zf, line)
                     if found == True:
                         self.clear_file(self.file_path)
@@ -122,13 +122,13 @@ class SevenZipFile():
 
 def crack_zip(file_path):
     logging.info('[7z] Decrypting 7z file')
-    dict_txt_files = glob.glob(rf"./logged_in/archive_cracker/dictionaries/*.txt") # Lista słówników z folderu
+    dict_txt_files = glob.glob(rf"./dictionaries/*.txt") # Lista słówników z folderu
     if len(dict_txt_files) == 0:
         logging.error('[7z] Dict not found')
         exit(1)
     future_list = []
     with ProcessPool(max_workers=2, max_tasks=1000) as pool:
-        #future_list.append(pool.schedule(SevenZip(file_path).brute_crack))
+        future_list.append(pool.schedule(SevenZip(file_path).brute_crack))
         for dict_path in dict_txt_files:
             future_list.append(pool.schedule(SevenZip(file_path).check_zip, args=(dict_path,)))
             time.sleep(0.3)
@@ -145,18 +145,20 @@ def crack_zip(file_path):
                         f.cancel()
                         future_list.remove(f)
                         continue
-                    found = True
-                    for _f in future_list: # Clear all processes left
-                        _f.cancel()
-                        future_list.remove(_f)
-                    pool.stop()
-                    return ret
+                    else:
+                        found = True
+                        for _f in future_list: # Clear all processes left
+                            _f.cancel()
+                            future_list.remove(_f)
+                        pool.stop()
+                        return ret
                 else:
                     continue
 
-# if __name__=="__main__":
-#     print("Running")
-    # z = SevenZip("./test.7z")
-    # ret = crack_zip("./test.7z")
+if __name__=="__main__":
+    print("Running")
+    z = SevenZip("./test.7z")
+    ret = crack_zip("./test.7z")
+    print(ret)
     # ret = crack_zip("./test.zip")
     # print(ret)

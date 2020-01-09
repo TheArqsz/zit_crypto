@@ -127,12 +127,13 @@ def crack_rar(file_path):
                         f.cancel()
                         future_list.remove(f)
                         continue
-                    found = True
-                    for _f in future_list: # Clear all processes left
-                        _f.cancel()
-                        future_list.remove(_f)
-                    pool.stop()
-                    return ret
+                    else:
+                        found = True
+                        for _f in future_list: # Clear all processes left
+                            _f.cancel()
+                            future_list.remove(_f)
+                        pool.stop()
+                        return ret
                 else:
                     continue
     
