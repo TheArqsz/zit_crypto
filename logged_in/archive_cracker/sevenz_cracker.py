@@ -122,7 +122,7 @@ class SevenZipFile():
 
 def crack_zip(file_path):
     logging.info('[7z] Decrypting 7z file')
-    dict_txt_files = glob.glob(rf"./dictionaries/*.txt") # Lista słówników z folderu
+    dict_txt_files = glob.glob(rf"./logged_in/archive_cracker/dictionaries/*.txt") # Lista słówników z folderu
     if len(dict_txt_files) == 0:
         logging.error('[7z] Dict not found')
         exit(1)
