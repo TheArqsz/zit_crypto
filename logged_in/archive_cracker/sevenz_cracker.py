@@ -74,22 +74,21 @@ class SevenZip:
             for i in range(min_pas_len,max_pas_len+1):
                 # ALPHABET = ''.join(random.sample(ALPHABET,len(ALPHABET))) # shuffle alphabet 
                 listPass = product(ALPHABET, repeat=i)
-            
-                    zf = SevenZipFile(file_path=self.file_path)
-                    try:
-                        if not zf.need_password():
-                            zf.close()
-                            self.clear_file(self.file_path)
-                            return 'EMPTY_PASSWORD'
-                    except RuntimeError as e:
-                        pass
-                    for line in listPass:
-                        line = ''.join(line)
-                        # print(line)
-                        found = self.extractFile(zf, line)
-                        if found == True:
-                            self.clear_file(self.file_path)
-                            return line
+                zf = SevenZipFile(file_path=self.file_path)
+                try:
+                    if not zf.need_password():
+                        zf.close()
+                        self.clear_file(self.file_path)
+                        return 'EMPTY_PASSWORD'
+                except RuntimeError as e:
+                    pass
+                for line in listPass:
+                    line = ''.join(line)
+                    # print(line)
+                    found = self.extractFile(zf, line)
+                    if found == True:
+                        self.clear_file(self.file_path)
+                        return line
             logging.info(f"[7z] Cracking 7z with brute force not succeded")
             self.clear_file()
             return None
