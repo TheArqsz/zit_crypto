@@ -1,0 +1,95 @@
+.js .flashed {
+    align-content: center; 
+    color: red;
+    display: contents;
+}
+
+.js .file_form {
+    display:inline-block;
+}
+
+/* .js input.form_input_submit {
+    padding:30px 30px; 
+    background:#5fc7a6; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 20px; 
+} */
+
+.js .input-file-submit-trigger {
+    display: block;
+    padding: 14px 45px;
+    background: #39D2B4;
+    color: #fff;
+    font-size: 1em;
+    transition: all .4s;
+    cursor: pointer;
+    border-radius: 50px; 
+}
+
+.js .form_input_submit {
+    width: 50px;
+    height: 0px;
+    opacity: 0;
+    padding: 0px 0;
+    cursor: pointer;
+}
+
+.js .form_input_submit:hover + .input-file-submit-trigger,
+.js .form_input_submit:focus + .input-file-submit-trigger,
+.js .input-file-submit-trigger:hover,
+.js .input-file-submit-trigger:focus {
+    background: #34495E;
+    color: #39D2B4;
+}
+
+.js .input-file-trigger {
+    display: block;
+    padding: 14px 45px;
+    background: #39D2B4;
+    color: #fff;
+    font-size: 1em;
+    transition: all .4s;
+    cursor: pointer;
+}
+.js .input-file {
+    width: 300px;
+    height: 0px;
+    opacity: 0;
+    padding: 0px 0;
+    cursor: pointer;
+}
+.js .input-file:hover + .input-file-trigger,
+.js .input-file:focus + .input-file-trigger,
+.js .input-file-trigger:hover,
+.js .input-file-trigger:focus {
+    background: #34495E;
+    color: #39D2B4;
+}
+
+.file-return {
+    margin: 0;
+}
+.file-return:not(:empty) {
+    margin: 1em 0;
+}
+.js .file-return {
+    font-style: italic;
+    font-size: .9em;
+    font-weight: bold;
+}
+.js .file-return:not(:empty):before {
+    content: "Selected file: ";
+    font-style: normal;
+    font-weight: normal;
+}
+
+h3.message{
+    color: green;
+}
+
+h3.error{
+    color: red;
+}
+

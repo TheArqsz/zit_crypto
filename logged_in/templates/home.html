@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>CryptHelper</title>
+  <link rel="stylesheet" href="{{ url_for('logged_in_bp.static', filename='css/home.css') }}">
+  <link rel="stylesheet" href="{{ url_for('logged_in_bp.static', filename='css/archive.css') }}">
+  <link rel="stylesheet" href="{{ url_for('logged_in_bp.static', filename='css/hash.css') }}">
+</head>
+<body>
+<nav id="slide-menu">
+	<ul>
+		<li class="home" onclick='mainPage()'>Home</li>
+		<li class="hashdecode" onclick='hashDecode()'>Hash decode</li>
+		<li class="hashencode" onclick='hashEncode()'>Hash encode</li>
+		<li class="archcrack" onclick='archCrack()'>Archive decode</li>
+		<li class="sep settings" onclick='settings()'>Settings</li>
+		<li class="logout" onclick='logOut()'>Logout</li>
+	</ul>
+</nav>
+<div id="content">
+	<div class="menu-trigger"></div>
+	<div class='solve_block'>{% block solve %}{% endblock %}</div>
+</div>
+  <script  src="{{ url_for('logged_in_bp.static', filename='js/home.js') }}"></script>
+  <script  src="{{ url_for('logged_in_bp.static', filename='js/functions.js') }}"></script>
+  <script  src="{{ url_for('logged_in_bp.static', filename='js/upload.js') }}"></script>
+</body>
+</html>

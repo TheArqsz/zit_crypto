@@ -1,0 +1,182 @@
+{% extends "home.html" %} {% block solve %} {%- if arch %}
+<h1 align="center">Archive cracker</h1>
+<br>
+<h3 align="center">On this subpage you can crack password-encrypted archives.</h3>
+<div align="center">Select a local file and send it by clicking <b><i>Submit</i></b></div>
+<br>
+<div class='messages'>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+    <h3 class="{{category}}">{{ message }}</h3>
+    {% endfor %} {% endif %} {% endwith %}
+</div>
+<form class='file_form' action="{{ url_for('logged_in_bp.archive_decode')}}" method="post" enctype="multipart/form-data">
+
+    <div class="input-file-container">
+        <input class="input-file" id="file" name='file' type="file" oninput="Filevalidation(this)">
+        <label tabindex="0" for="file" class="input-file-trigger">Select a file...</label>
+    </div>
+    <p class="file-return"></p><br>
+
+    <input type="submit" id='submit' value="submit" class='form_input_submit'>
+    <label tabindex="0" for="submit" class="input-file-submit-trigger">Submit</label>
+
+    <br>
+
+</form> <br> {% elif hash_decode %}
+<h1 align="center">Hash decoder</h1>
+<br>
+<h3 align="center">On this subpage you can decode hashes.</h3>
+<div align="center">Enter encoded text and send it by pressing <b><i>Submit</i></b></div>
+<br>
+<form action="{{ url_for('logged_in_bp.hash_decoder')}}" method="post">
+    <br>
+    <label for="inp" class="inp">
+                    <input name="hash_encoded" type="text" id="inp" placeholder="&nbsp;">
+                    <span class="label">Hash to decode</span>
+                    <span class="border"></span>
+                </label>
+    <br>
+    <input type="submit" id='submit' value="submit" class='form_input_submit'>
+    <label tabindex="0" for="submit" class="input-file-submit-trigger">Submit</label>
+</form> <br>
+<div class='messages'>
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+    <h3>{{ message }}</h3>
+    {% endfor %} {% endif %} {% endwith %}
+</div>
+<div id='solve_hash_inner'>
+    <div>
+        {%- if data is defined %}
+        <table class='hash_decoded_table' style="width:100%">
+            <th></th>
+            {% for key, value in data.items() %} {% if loop.index0 % 2 == 0 %}
+            <tr class='even'>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+            </tr>
+            {% endif %} {% endfor %}
+        </table>
+        {%- elif error is defined %}
+        <div>
+            {{error}}
+        </div>
+        {% else %}
+        <div>
+        </div>
+        {% endif %}
+    </div><br>
+</div>
+{% elif hash_encode %}
+<h1 align="center">Hash encoder</h1>
+<br>
+<h3 align="center">On this subpage you can get hash of given text.</h3>
+<div align="center">Enter text, choose hash type and encode it by pressing <b><i>Submit</i></b></div>
+<br>
+<form action="{{ url_for('logged_in_bp.hash_encoder')}}" method="post">
+    <label for="inp" class="inp">
+                    <input type="text" id="inp" name="text_to_encode" placeholder="&nbsp;">
+                    <span class="label">Text to encode</span>
+                    <span class="border"></span>
+                </label>
+    <br>
+    <div class="custom-select">
+        <select name='mode'>
+                        <option value="md5">md5</option>
+                        <option value="sha1">sha1</option>
+                        <option value="sha256">sha256</option>
+                        <option value="sha384">sha384</option>
+                        <option value="sha512">sha512</option>
+                    </select>
+    </div>
+
+    <br>
+    <input type="submit" id='submit' value="submit" class='form_input_submit'>
+    <label tabindex="0" for="submit" class="input-file-submit-trigger">Submit</label>
+</form> <br>
+<div class='messages'>
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+    <h3>{{ message }}</h3>
+    {% endfor %} {% endif %} {% endwith %}
+</div>
+<div id='encode_hash_inner'>
+    {%- if data is defined %}
+    <table class='hash_encoded_table'>
+        <th></th>
+        {% for key, value in data.items() %} {% if loop.index0 % 2 == 0 %}
+        <tr class='even'>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endif %} {% endfor %}
+    </table>
+    {%- elif error is defined %}
+    <div>
+        {{error}}
+    </div>
+    {% else %}
+    <div>
+    </div>
+    {% endif %}
+</div><br> {% elif settings %}
+<h1 align="center">Settings</h1>
+<form action="{{ url_for('logged_in_bp.settings')}}" method='POST'>
+    <input type="checkbox" name="test" id="test">
+    <label for="test">Test</label>
+
+    <button type="submit">Save</button>
+
+</form>
+
+<button name="deleteButton" onclick="checkUser()">Delete user</button>
+<br> {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+<div class='messages'></div>
+{% for category, message in messages %}
+<h3 class="{{category}}">{{ message }}</h3>
+{% endfor %}
+</div>
+{% endif %} {% endwith %} {% else %}
+<div class="main_page">
+    <h1 align="center">Welcome {{username}} to CryptoHelper</h1>
+    <br>
+    <h3 align="center">On this website you can try to decode hash, encode hash and break the password of .zip archive.</h3>
+    <div align="center">Choose your option from the menu on the left</div>
+    <br>
+    <div>
+        <table style="width:100%">
+            <tr>
+                <th>Available hashes</th>
+                <th>Available archive types</th>
+            </tr>
+            <tr>
+                <td align="center">md5</td>
+                <td align="center">.zip</td>
+            </tr>
+            <tr>
+                <td align="center">sha1</td>
+                <td align="center">.rar (slow)</td>
+            </tr>
+            <tr>
+                <td align="center">sha256</td>
+                <td align="center">.7z (slow)</td>
+            </tr>
+            <tr>
+                <td align="center">sha384</td>
+            </tr>
+            <tr>
+                <td align="center">sha512</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+{% endif %} {% endblock %}

@@ -1,0 +1,12 @@
+Flask
+Flask-SQLAlchemy 
+Flask-Migrate 
+Flask-Script
+pg8000 
+mailjet_rest
+python-magic
+rarfile
+pyjwt
+gunicorn
+pebble
+humanfriendly
