@@ -268,4 +268,4 @@ NO_HASH_MESSAGE = 'No hash provided'
 BAD_REQUEST_MESSAGE = 'Incorrect request data'
 
 import os
-DECRACK_TIMEOUT = os.getenv('ARCHIVE_DECRACK_TIMEOUT', 1200)
+DECRACK_TIMEOUT = int(os.getenv('ARCHIVE_DECRACK_TIMEOUT')) or 1200
