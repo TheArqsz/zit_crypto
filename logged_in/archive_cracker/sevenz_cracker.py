@@ -62,7 +62,8 @@ class SevenZip:
             logging.info(f"[7z] Cracking 7z with with dict {dict_path} not succeded")
             self.clear_file()
             return None
-        except FileNotFoundError:
+        except FileNotFoundError as e:
+            logging.error(f"[7z] {e}")
             pass
 
     def brute_crack(self):
@@ -80,7 +81,8 @@ class SevenZip:
                         zf.close()
                         self.clear_file(self.file_path)
                         return 'EMPTY_PASSWORD'
-                except RuntimeError as e:
+                except RuntimeError as e:    
+                    logging.error(f"[7z] {e}")
                     pass
                 for line in listPass:
                     line = ''.join(line)
@@ -92,7 +94,8 @@ class SevenZip:
             logging.info(f"[7z] Cracking 7z with brute force not succeded")
             self.clear_file()
             return None
-        except FileNotFoundError:
+        except FileNotFoundError as e:
+            logging.error(f"[7z] {e}")
             pass
 
 class SevenZipFile():

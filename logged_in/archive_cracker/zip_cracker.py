@@ -56,6 +56,7 @@ class Zip():
                         self.clear_file(self.file_path)
                         return 'EMPTY_PASSWORD'
                 except RuntimeError as e:
+                    logging.error(f"[ZIP] {e}")
                     pass
                 for line in dname:
                     found = self.extractFile(zf, line)
@@ -65,7 +66,8 @@ class Zip():
             logging.info(f"[ZIP] Cracking zip with dict {dict_path} not succeded")
             self.clear_file()
             return None
-        except FileNotFoundError:
+        except FileNotFoundError as e:
+            logging.error(f"[ZIP] {e}")
             pass
 
     def brute_crack(self):

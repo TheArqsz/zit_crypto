@@ -87,6 +87,7 @@ class Rar:
                             self.clear_file(self.file_path)
                             return 'EMPTY_PASSWORD'
                     except RuntimeError as e:
+                        logging.error(f"[RAR] {e}")
                         pass
                     for line in listPass:
                         line = ''.join(line)
@@ -97,7 +98,8 @@ class Rar:
             logging.info(f"[RAR] Cracking rar with with brute force not succeded")
             self.clear_file()
             return None
-        except FileNotFoundError:
+        except FileNotFoundError as e:
+            logging.error(f"[RAR] {e}")
             pass
 
 
