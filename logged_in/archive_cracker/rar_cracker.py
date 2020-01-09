@@ -142,6 +142,6 @@ def crack_rar(file_path):
 
 
 if __name__ == '__main__':
-    # print(crack_rar('./test.rar'))
-    r = Rar('./test.rar')
-    print(r.brute_crack())
+    print(crack_rar('./test.rar'))
+    # r = Rar('./test.rar')
+    # print(r.brute_crack())
