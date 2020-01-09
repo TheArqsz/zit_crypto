@@ -1,6 +1,6 @@
 from .zip_cracker import crack_zip
 from .rar_cracker import crack_rar
-from .sevenz_cracker import crack_zip as crack_7z
+from .sevenz_cracker import crack_zip as crack_sevenz
 import logging
 import magic 
 import copy
@@ -9,7 +9,7 @@ from base64 import b64encode
 import os
 
 def handle_file(file_path, file_mime):
-    print(file_mime)
+    # print(file_mime)
     if file_mime == 'application/zip' or file_mime == 'application/x-zip-compressed':
         # z = Zip()
         ret = crack_zip(file_path)
@@ -22,7 +22,7 @@ def handle_file(file_path, file_mime):
         return ret   
     elif file_mime == 'application/x-7z-compressed':
         # s = SevenZip()
-        ret = crack_7z(file_path)
+        ret = crack_sevenz(file_path)
         logging.info(f"[7z] Cracked: {ret}")
         return ret
     else:
