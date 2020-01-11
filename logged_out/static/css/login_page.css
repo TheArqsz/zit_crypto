@@ -176,6 +176,10 @@
     color: red;
   }
 
+  .message{
+    color: green;
+  }
+
   .login_form {
     text-align: center; 
   }

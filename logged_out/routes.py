@@ -42,7 +42,7 @@ def sign_up_user():
     email = request.form.get('email')
     if username is None or pwd is None or email is None:
         flash('Wrong data provided', category='error')
-        return redirect(url_for('logged_out_bp.main_page')) #abort(400, BAD_REQUEST_MESSAGE) #app.config['BAD_REQUEST_MESSAGE'])
+        return redirect(url_for('logged_out_bp.main_page')) 
     else:
         user = User(username=username, email=email)
         user.set_password(pwd)
@@ -52,11 +52,7 @@ def sign_up_user():
         except IntegrityError as e:
             print(e)
             flash('User exists', category='error')
-            return redirect(url_for('logged_out_bp.main_page')) #abort(400, "USER EXISTS")
-        data = {
-                    'createUser': username,
-                    'timestamp': datetime.now()
-                }
+            return redirect(url_for('logged_out_bp.main_page'))
         flash('User created', category='message')
         return redirect(url_for('logged_out_bp.main_page'))
 
@@ -99,33 +95,3 @@ def not_handled(error):
                 'timestamp': datetime.now()
             }
         ), 400)
-
-
-
-class TimeoutException(Exception): pass
-
-def try_time_limit(duration_sec):
-    import signal
-    signal.signal(signal.SIGALRM, signal_handler)
-    signal.alarm(duration_sec) 
- 
-def signal_handler(signum, frame):
-    raise TimeoutException()
-
-from tempfile import gettempdir
-TEMP_PATH = gettempdir()
-ALLOWED_ARCHIVE_MIME_TYPES = {
-    'application/x-rar-compressed': 'rar', 
-    'application/zip': 'zip'
-}
-
-BAD_TYPE_ERROR_MESSAGE = 'Bad type'
-NO_FILE_ERROR_MESSAGE = 'No file was provided'
-NOT_CORRECT_HASH_MESSAGE = 'This hash is not correct'
-CANNOT_DECRYPT_MESSAGE = "Hash cannot be decrypted"
-CANNOT_DECRYPT_FILE_MESSAGE = "File cannot be decrypted"
-NO_HASH_MESSAGE = 'No hash provided'
-BAD_REQUEST_MESSAGE = 'Incorrect request data'
-
-import os
-DECRACK_TIMEOUT = os.getenv('ARCHIVE_DECRACK_TIMEOUT', 180)

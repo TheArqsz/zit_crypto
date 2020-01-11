@@ -1,6 +1,3 @@
-# from brute import brute
-# from .rarfile import RarWrongPassword, RarFile
-# from logged_in.archive_cracker import rarfile
 import rarfile
 import os
 from tempfile import gettempdir
@@ -47,7 +44,6 @@ class Rar:
 
 
     def check_rar(self, dict_path):
-        #dict_path = os.path.join(os.path.dirname(os.path.abspath( __file__ )), 'dict.txt')
         logging.info(f"[RAR] Cracking rar with dict {dict_path}")
         dname = self.fromDictionary(dict_path)
         try:

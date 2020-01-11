@@ -130,8 +130,8 @@
 </div><br> {% elif settings %}
 <h1 align="center">Settings</h1>
 <form action="{{ url_for('logged_in_bp.settings')}}" method='POST'>
-    <input type="checkbox" name="test" id="test">
-    <label for="test">Test</label>
+    <input type="checkbox" name="remember_hashes" id="remember_hashes">
+    <label for="remember_hashes">Do not remember my encoded hashes during this session </label>
 
     <button type="submit">Save</button>
 

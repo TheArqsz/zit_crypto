@@ -40,6 +40,7 @@ def log_out():
     logging.info('[LOGOUT] Got logout request')
     session.pop('ACCESS_TOKEN', None)
     session.pop('username', None)
+    session.pop("DO_NOT_REMEMBER", None)
     return redirect(url_for('logged_out_bp.main_page'))
 
 @logged_in_bp.route('/settings', methods=['POST', 'GET'])
@@ -50,8 +51,9 @@ def settings():
         return render_template("solve.htm", settings=1)
     else:
         form = request.form
-        print(form.get('test'))
-        flash('Clicked', category='message')
+        if form.get('remember_hashes'):
+            session["DO_NOT_REMEMBER"] = True
+            flash("Hashes won't be remembered during this session", category='message')
         return render_template("solve.htm", settings=1)
 
 @logged_in_bp.route('/deleteUser', methods=['DELETE', 'GET'])

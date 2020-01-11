@@ -1,25 +1,3 @@
-# def is_hash_by_(hash, hash_type):
-#     if hash is None:
-#         pass
-#     elif type(hash) == str:
-#         if hash_type == 'md5':
-#             if len(hash) == 32:
-#                 return True
-#         elif hash_type == 'sha1':
-#             if len(hash) == 40:
-#                 return True
-#         elif hash_type == 'sha256':
-#             if len(hash) == 64:
-#                 return True
-#         elif hash_type == 'sha384':
-#             if len(hash) == 96:
-#                 return True
-#         elif hash_type == 'sha512':
-#             if len(hash) == 128:
-#                 return True
-#         else:
-#             return False
-
 def get_hash_type(hash):
     if hash is None:
         pass

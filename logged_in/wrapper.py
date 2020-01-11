@@ -33,6 +33,7 @@ def require_api_token(func):
             if not isinstance(valid_login,int):
                 session.pop('ACCESS_TOKEN', None)
                 session.pop('username', None)
+                session.pop("DO_NOT_REMEMBER", None)
                 return redirect(url_for('logged_out_bp.main_page'))
         # Pass whatever arrived if authorized
         return func(*args, **kwargs)

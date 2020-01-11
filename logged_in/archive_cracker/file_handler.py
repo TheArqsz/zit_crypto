@@ -9,19 +9,15 @@ from base64 import b64encode
 import os
 
 def handle_file(file_path, file_mime):
-    # print(file_mime)
     if file_mime == 'application/zip' or file_mime == 'application/x-zip-compressed':
-        # z = Zip()
         ret = crack_zip(file_path)
         logging.info(f"[ZIP] Cracked: {ret}")
         return ret
     elif file_mime == 'application/x-rar-compressed' or file_mime == 'application/x-rar':
-        # r = Rar()
         ret = crack_rar(file_path)
         logging.info(f"[RAR] Cracked: {ret}")
         return ret   
     elif file_mime == 'application/x-7z-compressed':
-        # s = SevenZip()
         ret = crack_sevenz(file_path)
         logging.info(f"[7z] Cracked: {ret}")
         return ret

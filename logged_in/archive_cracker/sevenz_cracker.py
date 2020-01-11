@@ -46,7 +46,6 @@ class SevenZip:
 
     def check_zip(self, dict_path):
         logging.info(f"[7z] Cracking 7z with dict {dict_path}")
-        # dict_path = os.path.join(os.path.dirname(os.path.abspath( __file__ )), 'dict.txt')
         dname = self.fromDictionary(dict_path)
         try:
             zf = SevenZipFile(file_path=self.file_path)
@@ -155,11 +154,3 @@ def crack_zip(file_path):
                         return ret
                 else:
                     continue
-
-if __name__=="__main__":
-    print("Running")
-    z = SevenZip("./test.7z")
-    ret = crack_zip("./test.7z")
-    print(ret)
-    # ret = crack_zip("./test.zip")
-    # print(ret)

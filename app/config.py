@@ -8,7 +8,6 @@ from tempfile import gettempdir
 
 class BaseConfig(object):
     DEBUG = True
-    # Define the application directory
     BASE_DIR = os.getcwd()
     logging.basicConfig(format='[%(name)s %(levelname)s %(asctime)s]  %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.INFO)
     SQL_ALCH_DATABASE = None 
@@ -39,18 +38,4 @@ class BaseConfig(object):
     THREADS_PER_PAGE = 2
     CSRF_ENABLED = True
     TEMP_PATH = gettempdir()
-    ALLOWED_ARCHIVE_MIME_TYPES = {
-        'application/x-rar-compressed': 'rar', 
-        'application/zip': 'zip'
-    }
 
-    BAD_TYPE_ERROR_MESSAGE = 'Bad type'
-    NO_FILE_ERROR_MESSAGE = 'No file was provided'
-    NOT_CORRECT_HASH_MESSAGE = 'This hash is not correct'
-    CANNOT_DECRYPT_MESSAGE = "Hash cannot be decrypted"
-    CANNOT_DECRYPT_FILE_MESSAGE = "File cannot be decrypted"
-    NO_HASH_MESSAGE = 'No hash provided'
-    BAD_REQUEST_MESSAGE = 'Incorrect request data'
-
-
-    DECRACK_TIMEOUT = os.getenv('ARCHIVE_DECRACK_TIMEOUT', 180)
