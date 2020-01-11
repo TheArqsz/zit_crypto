@@ -4,7 +4,6 @@ from tempfile import gettempdir
 from shutil import rmtree, copyfile
 from datetime import datetime
 import logging
-from random import shuffle
 import threading 
 import time
 from pebble import ProcessPool
@@ -12,7 +11,6 @@ import glob
 from itertools import product
 import random
 
-running = None
 class Zip():
     def __init__(self, file_path):
         self.file_path = file_path
@@ -56,7 +54,7 @@ class Zip():
                         self.clear_file(self.file_path)
                         return 'EMPTY_PASSWORD'
                 except RuntimeError as e:
-                    logging.error(f"[ZIP] {e}")
+                    logging.error(f"[ZIP] Not an empty password:  {e}")
                     pass
                 for line in dname:
                     found = self.extractFile(zf, line)
@@ -67,7 +65,7 @@ class Zip():
             self.clear_file()
             return None
         except FileNotFoundError as e:
-            logging.error(f"[ZIP] {e}")
+            self.clear_file()
             pass
 
     def brute_crack(self):
@@ -86,6 +84,7 @@ class Zip():
                             self.clear_file(self.file_path)
                             return 'EMPTY_PASSWORD'
                     except RuntimeError as e:
+                        self.clear_file()
                         pass
                     for line in listPass:
                         line = ''.join(line)
@@ -97,6 +96,7 @@ class Zip():
             self.clear_file()
             return None
         except FileNotFoundError:
+            self.clear_file()
             pass
 
 def crack_zip(file_path):

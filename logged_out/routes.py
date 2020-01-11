@@ -28,9 +28,6 @@ def sign_in_user():
             return redirect(url_for('logged_in_bp.home_page'))
         else:
             # User does not exist. Therefore, we return an error message
-            response = {
-                'message': 'Invalid email or password, Please try again'
-            }
             flash("Wrong username or password", 'error')
             return redirect(url_for('logged_out_bp.main_page'))
     else:

@@ -10,7 +10,6 @@ from tempfile import gettempdir
 from shutil import rmtree
 from datetime import datetime
 import logging
-from random import shuffle
 from pebble import ProcessPool
 import glob
 from itertools import product
@@ -82,7 +81,7 @@ class SevenZip:
                         self.clear_file(self.file_path)
                         return 'EMPTY_PASSWORD'
                 except RuntimeError as e:    
-                    logging.error(f"[7z] {e}")
+                    logging.error(f"[7z] Not en empty password: {e}")
                     pass
                 for line in listPass:
                     line = ''.join(line)
@@ -94,7 +93,7 @@ class SevenZip:
             self.clear_file()
             return None
         except FileNotFoundError as e:
-            logging.error(f"[7z] {e}")
+            self.clear_file()
             pass
 
 class SevenZipFile():

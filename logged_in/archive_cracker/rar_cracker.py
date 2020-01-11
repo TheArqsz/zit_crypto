@@ -58,6 +58,7 @@ class Rar:
                         self.clear_file(self.file_path)
                         return 'EMPTY_PASSWORD'
                 except Exception as e:
+                    logging.error(f"[RAR] Not an empty password:  {e}")
                     pass
                 for line in dname:
                     found = self.extractFile(zr, line)
@@ -68,6 +69,7 @@ class Rar:
             self.clear_file()
             return None
         except FileNotFoundError:
+            self.clear_file()
             pass
 
     def brute_crack(self):
@@ -82,12 +84,11 @@ class Rar:
                 with rarfile.RarFile(self.file_path) as zr:
                     try:
                         if not zr.needs_password():
-                            print("tu")
                             zr.close()
                             self.clear_file(self.file_path)
                             return 'EMPTY_PASSWORD'
                     except RuntimeError as e:
-                        logging.error(f"[RAR] {e}")
+                        logging.error(f"[RAR] Not an empty password: {e}")
                         pass
                     for line in listPass:
                         line = ''.join(line)
@@ -99,7 +100,7 @@ class Rar:
             self.clear_file()
             return None
         except FileNotFoundError as e:
-            logging.error(f"[RAR] {e}")
+            self.clear_file()
             pass
 
 

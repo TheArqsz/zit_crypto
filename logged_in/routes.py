@@ -92,7 +92,7 @@ def hash_encoder():
         data = {
             "Original": text_to_hash,
             "Encoded": hashed,
-            "Mode": mode,
+            "Type": mode,
             "Encoding duration": format_timespan(elapsed_time),
         }
         return render_template('solve.htm', hash_encode=1, data=data)
@@ -117,9 +117,9 @@ def hash_decoder():
                 end_date = datetime.now()
                 if dehashed:
                     data = {
-                        'Selected hash type': hash_types.get_hash_type(hash_to_crack),
-                        'Original hash': hash_to_crack,
-                        'Decoded hash': dehashed,
+                        'Type': hash_types.get_hash_type(hash_to_crack),
+                        'Original': hash_to_crack,
+                        'Decoded': dehashed,
                         'Dehashing duration': format_timespan(elapsed_time),
                         'Dehash started at': str(start_date.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]),
                         'Dehash ended at': str(end_date.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
