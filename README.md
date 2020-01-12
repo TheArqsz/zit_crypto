@@ -5,7 +5,7 @@ Web application made for ZIT course at 5th semester of Cybersecurity at Wrocław
 ## Prerequisites
 Scripts are written under **python 3.7.4**
 
-Before you can use it you need to have 2 things:
+Before you can use it you need to have a few things:
 * Linux-based OS (Debian, Ubuntu etc..)
 * p7zip-full
 * unrar (non-free)
