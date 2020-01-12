@@ -115,6 +115,12 @@ def hash_decoder():
                 start_date = datetime.now()
                 start_time = perf_counter()
                 dehashed = hasher.single(hash_to_crack, hash_type)
+                # this part is needed if polish signs appear - they turn dehashed value to HEX in form $HEX[\w]
+                import re
+                logging.info(re.match(r"(?<=HEX)\w+", dehashed))
+                if re.search(r'(\$HEX\[\w+\])', dehashed):
+                    import codecs
+                    dehashed = codecs.decode(str.encode(re.split(r"(\w+)", dehashed)[3]), "hex_codec").decode('utf-8') 
                 elapsed_time = perf_counter() - start_time
                 end_date = datetime.now()
                 if dehashed:
