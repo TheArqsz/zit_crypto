@@ -69,6 +69,9 @@ def send_arch_message(user, mail, file_name='NOT_GIVEN', password=None, time=0, 
 
 def send_mail(data):
     logging.info("[MAIL] Sending email")
+    if API_KEY == "example" or API_SECRET == "example":
+        logging.info("[MAIL] ENV variables not set - look for MJ_APIKEY_PUBLIC and MJ_APIKEY_PRIVATE")
+        return
     result = mailjet.send.create(data=data)
     if result.status_code == 200:
         logging.info("[MAIL] Successfully sent mail")

@@ -13,4 +13,7 @@ app.register_blueprint(rerouting_bp)
 from database.models import db
 db.init_app(app)
 with app.app_context():
-    db.create_all()
+    try:
+        db.create_all()
+    except:
+        pass
