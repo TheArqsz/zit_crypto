@@ -11,13 +11,13 @@ Before you can use it you need to have a few things:
 * unrar (non-free)
 * python 3
 	
-### Installing required libraries
+## Installing required libraries
 
 ```
 pip install -r requirements.txt
 ```
 
-### Usage
+## Usage
 
 To run application:
 
@@ -28,7 +28,7 @@ gunicorn -c gunicorn.conf.py wsgi
 App will boot up at default ip and port 127.0.0.1:8080
 
 
-### Environmental variables
+## Environmental variables
 
 |              ENV              	|       Default Value       	|                          Purpose                         	|
 |:-----------------------------:	|:-------------------------:	|:--------------------------------------------------------:	|
