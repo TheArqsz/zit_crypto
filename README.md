@@ -37,7 +37,7 @@ App will boot up at default ip and port 127.0.0.1:8080
 |         DATABASE_PASS         	|             -             	|                      Password for DB                     	|
 |          DATABASE_IP          	|             -             	|                         IP of DB                         	|
 |         DATABASE_NAME         	|             -             	|                      Name of DB used                     	|
-|    ARCHIVE_DECRACK_TIMEOUT    	|             60            	| Time during which archives will be tried to be decrypted 	|
+|    ARCHIVE_DECRACK_TIMEOUT    	|             60            	| Time during which archives will be tried to be decrypted [sec]	|
 |        MJ_APIKEY_PUBLIC       	|          example          	|               Public key of Mailjet account              	|
 |       MJ_APIKEY_PRIVATE       	|          example          	|              Private key of Mailjet account              	|
 |          SENDER_EMAIL         	|    example@example.com    	|            Mail from which mails will be sent            	|
