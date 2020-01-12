@@ -168,7 +168,7 @@ def archive_decode():
                     thread.daemon = True                    
                     thread.start()
                     message = f"""
-                    Archive will be tried to hack in next: {format_timespan(DECRACK_TIMEOUT)}.
+                    We will try to decrypt archive in next: {format_timespan(DECRACK_TIMEOUT)}.
                     Answer will be sent to your email.
                     """
                     flash(message, 'message')
