@@ -102,7 +102,6 @@ class Zip():
 def crack_zip(file_path):
     logging.info('[ZIP] Decrypting zip file')
     dict_txt_files = sorted(glob.glob(rf"./logged_in/archive_cracker/dictionaries/*.txt")) # Lista słówników z folderu
-    logging.info(dict_txt_files)
     if len(dict_txt_files) == 0:
         logging.error('[ZIP] Dict not found')
         exit(1)
